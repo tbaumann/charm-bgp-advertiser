@@ -1,19 +1,16 @@
 name: bgp-advertiser
-summary: <Fill in summary here>
-maintainer: Tilman Baumann (Work) <Tilman.Baumann.(Work)@zuse.tilman.baumann.name>
+summary: Subordinate charm to advertise endpoint ports via BGP (using exabgp)
+maintainers: 
+  - Tilman Baumann <tilman.baumann@canonical.com>
+  - Alexei Mazarov <aleksei.nazarov@pan-net.eu>
 description: |
   <Multi-line description here>
 tags:
-  # Replace "misc" with one or more whitelisted tags from this list:
-  # https://jujucharms.com/docs/stable/authors-charm-metadata
-  - misc
-subordinate: false
-provides:
-  provides-relation:
-    interface: interface-name
+  - network
+subordinate: true
+series: [xenial, bionic]
 requires:
-  requires-relation:
-    interface: interface-name
-peers:
-  peer-relation:
-    interface: interface-name
+  host-system:
+    interface: "juju-info"
+    scope: "container"
+

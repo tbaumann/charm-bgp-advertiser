@@ -1,1 +1,13 @@
-includes: ['layer:basic']  # if you use any interfaces, add them here
+includes:
+  - "layer:options"
+  - "layer:basic"
+  - "layer:status"
+  - "layer:apt"
+  - "layer:debug"
+  - "layer:coordinator"
+  - "interface:juju-info"
+options:
+  apt:
+    packages: [exabgp]
+
+

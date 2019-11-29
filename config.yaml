@@ -1,14 +1,31 @@
 options:
-  string-option:
+  vip:
     type: string
-    default: "Default Value"
-    description: "A short description of the configuration option"
-  boolean-option:
-    type: boolean
-    default: False
-    description: "A short description of the configuration option"
-  int-option:
+    default: ""
+    description: "Virtual IP address to be announced"
+  local-as:
     type: int
-    default: 9001
-    description: "A short description of the configuration option"
-
+    default: 0
+    description: "Local AS number (Autonomous System Numer)"
+  peer-as:
+    type: int
+    default: 0
+    description: "Peer AS number (Autonomous System Numer)"
+  router-id:
+    type: string
+    default: ""
+    description: "Router ID"
+  hold-time:
+    type: int
+    default: 0
+    description: "Optional hold time. 0 to disable"
+  neighbors:
+    type: string
+    default: ""
+    description: "Comma separated list of neighbor IP addresses"
+  healthcheck-cmd:
+    type: string
+    default: "/bin/true"
+    description: |
+      Service healthcheck command.
+      VIP is anncounced as long as check passes
