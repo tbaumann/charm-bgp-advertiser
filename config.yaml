@@ -3,19 +3,19 @@ options:
     type: string
     default: ""
     description: "Virtual IP address to be announced"
-  local-as:
+  local_as:
     type: int
     default: 0
     description: "Local AS number (Autonomous System Numer)"
-  peer-as:
+  peer_as:
     type: int
     default: 0
     description: "Peer AS number (Autonomous System Numer)"
-  router-id:
+  router_id:
     type: string
     default: ""
     description: "Router ID"
-  hold-time:
+  hold_time:
     type: int
     default: 0
     description: "Optional hold time. 0 to disable"
@@ -23,7 +23,7 @@ options:
     type: string
     default: ""
     description: "Comma separated list of neighbor IP addresses"
-  healthcheck-cmd:
+  healthcheck_cmd:
     type: string
     default: "/bin/true"
     description: |

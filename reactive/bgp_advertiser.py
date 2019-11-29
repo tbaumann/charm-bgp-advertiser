@@ -1,4 +1,4 @@
-from charms.reactive import when, when_not, set_flag, hook
+from charms.reactive import when, when_not, set_flag, hook, clear_flag
 from charmhelpers.core.hookenv import log, config, service_name
 from charms.templating.jinja2 import render
 from charms.layer import status
@@ -43,3 +43,7 @@ def restart():
 def stopped():
     #FIXME Cleanup and disable service
     log("Uninstalling")
+
+@hook('upgrade-charm')
+def upgrade_charm():
+    write_config()
