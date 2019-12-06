@@ -1,8 +1,8 @@
 options:
-  vip:
+  vips:
     type: string
     default: ""
-    description: "Virtual IP address to be announced"
+    description: "List of virtual IP address to be announced. Comma separated in CIDR format"
   local_as:
     type: int
     default: 0
