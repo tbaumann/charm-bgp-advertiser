@@ -1,9 +1,11 @@
+repo: 'https://github.com/tbaumann/charm-bgp-advertiser'
 includes:
   - "layer:basic"
   - "layer:status"
   - "layer:apt"
   - "layer:debug"
   - "layer:coordinator"
+  - "layer:options"
   - "interface:juju-info"
 options:
   apt:

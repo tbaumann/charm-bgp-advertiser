@@ -14,8 +14,8 @@
    height="96"
    id="svg6517"
    version="1.1"
-   inkscape:version="0.48+devel r12274"
-   sodipodi:docname="Juju_charm_icon_template.svg">
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="icon.svg">
   <defs
      id="defs6519">
     <linearGradient
@@ -137,7 +137,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="4.0745362"
-     inkscape:cx="18.514671"
+     inkscape:cx="-32.411371"
      inkscape:cy="49.018169"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -146,10 +146,10 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="1920"
-     inkscape:window-height="1029"
-     inkscape:window-x="0"
-     inkscape:window-y="24"
+     inkscape:window-width="3060"
+     inkscape:window-height="1672"
+     inkscape:window-x="140"
+     inkscape:window-y="54"
      inkscape:window-maximized="1"
      showborder="true"
      showguides="true"
@@ -161,19 +161,23 @@
     <sodipodi:guide
        orientation="1,0"
        position="16,48"
-       id="guide823" />
+       id="guide823"
+       inkscape:locked="false" />
     <sodipodi:guide
        orientation="0,1"
        position="64,80"
-       id="guide825" />
+       id="guide825"
+       inkscape:locked="false" />
     <sodipodi:guide
        orientation="1,0"
        position="80,40"
-       id="guide827" />
+       id="guide827"
+       inkscape:locked="false" />
     <sodipodi:guide
        orientation="0,1"
        position="64,16"
-       id="guide829" />
+       id="guide829"
+       inkscape:locked="false" />
   </sodipodi:namedview>
   <metadata
      id="metadata6522">
@@ -183,7 +187,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -199,7 +203,37 @@
        id="path6455"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="sssssssss" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot45"
+       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion47"><rect
+           id="rect49"
+           width="65"
+           height="65"
+           x="15"
+           y="16" /></flowRegion><flowPara
+         id="flowPara51"></flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="-219.65549"
+       y="673.16272"
+       id="text67"><tspan
+         sodipodi:role="line"
+         id="tspan65"
+         x="-219.65549"
+         y="673.16272"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;font-family:'DejaVu Serif';-inkscape-font-specification:'DejaVu Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr;text-anchor:middle">BGP</tspan><tspan
+         sodipodi:role="line"
+         x="-219.65549"
+         y="723.16272"
+         id="tspan69"
+         style="-inkscape-font-specification:'DejaVu Serif, Normal';font-family:'DejaVu Serif';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:40px;text-anchor:middle;text-align:center;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal">HA</tspan></text>
   </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Foreground" />
   <g
      inkscape:groupmode="layer"
      id="layer3"
