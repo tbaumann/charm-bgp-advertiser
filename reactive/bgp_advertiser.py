@@ -1,14 +1,29 @@
 from charms.reactive import when, when_not, set_flag, hook, clear_flag
 from charmhelpers.core.hookenv import log, config, service_name
-from charmhelpers.core.host import service_start, service_stop, service_restart, service_pause, service_resume
+from charmhelpers.core.host import service_start, service_stop, service_restart, service_pause, service_resume, service_running
 from charms.templating.jinja2 import render
 from charms.layer import status
 import charms.coordinator
 
 from bgp_advertiser.util import get_neighbours, has_required_fields
 
+from os.path import exists
+import time
+
 EXABGP_CONF = '/etc/exabgp/exabgp.conf'
 SERVICENAME = 'exabgp'
+
+
+@hook('update-status')
+@when('bgp-advertiser.running')
+def update_status():
+    if not service_running(SERVICENAME):
+        status.blocked('exabgp service failed')
+    elif not exists('/tmp/exabgp-{}.up'.format(service_name())):
+        status.active('ready (down)')
+    else:
+        status.active('ready (up)')
+
 
 @when_not('bgp-advertiser.ready')
 @when('apt.installed.exabgp')
@@ -21,7 +36,7 @@ def install_bgp_advertiser():
 @when('bgp-advertiser.ready')
 @when('bgp-advertiser.running')
 def is_ready():
-    status.active('Ready')
+    update_status()
 
 
 @when('bgp-advertiser.should-run')
@@ -61,7 +76,9 @@ def write_config():
 def restart():
     status.maintenance('Rolling restart')
     service_restart(SERVICENAME)
-    status.active('Live')
+    #FIXME wait for service advertisment
+    time.sleep( 30 )
+    update_status()
 
 
 @hook('stop')

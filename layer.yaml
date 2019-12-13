@@ -1,5 +1,4 @@
 includes:
-  - "layer:options"
   - "layer:basic"
   - "layer:status"
   - "layer:apt"
