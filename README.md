@@ -5,7 +5,7 @@ This charm is used to advertise virtual IP of scaled services via BGP.
 The use case is for router fabric based HA.
 
 The service to be exported can be monitred via a healthcheck command.
-The route is withdrawn if the servie is unavailable.
+The route is withdrawn if the service is unavailable.
 
 # Usage
 
