@@ -1,5 +1,5 @@
 from charms.reactive import when, when_not, set_flag, hook, clear_flag
-from charmhelpers.core.hookenv import log, config, service_name
+from charmhelpers.core.hookenv import log, config, service_name, resource_get
 from charmhelpers.core.host import service_start, service_stop, service_restart, service_pause, service_resume, service_running
 from charms.templating.jinja2 import render
 from charms.layer import status
@@ -8,10 +8,13 @@ import charms.coordinator
 from bgp_advertiser.util import get_neighbours, has_required_fields
 
 from os.path import exists
+import os
 import time
+import shutil
 
 EXABGP_CONF = '/etc/exabgp/exabgp.conf'
 SERVICENAME = 'exabgp'
+TESTSCRIPT_DIR  = '/var/local/bgp-advertiser/'
 
 
 @hook('update-status')
@@ -19,6 +22,7 @@ SERVICENAME = 'exabgp'
 def update_status():
     if not service_running(SERVICENAME):
         status.blocked('exabgp service failed')
+        # FIXME Try to recover?
     elif not exists('/tmp/exabgp-{}.up'.format(service_name())):
         status.active('ready (down)')
     else:
@@ -28,7 +32,7 @@ def update_status():
 @when_not('bgp-advertiser.ready')
 @when('apt.installed.exabgp')
 def install_bgp_advertiser():
-    # FIXME Do we even need this post-inst step?
+    os.mkdir(TESTSCRIPT_DIR)
     set_flag('bgp-advertiser.ready')
     write_config()
 
@@ -61,10 +65,18 @@ def stop_service():
 @when('config.changed')
 def write_config():
     context = config()
+    testscriptpath = ''
     if has_required_fields(context):
         context['neighbours'] = get_neighbours(context)
         context['app_name'] = service_name()
-        log("VIP={}".format(context['vips']))
+
+        res_path = resource_get('testscript')
+        if res_path and os.stat(res_path).st_size != 0:
+            testscriptpath = TESTSCRIPT_DIR + context['app_name']
+            shutil.copyfile(res_path, testscriptpath)
+            os.chmod(testscriptpath, 0o755)
+            testscriptpath = testscriptpath + " "
+        context['testscriptpath'] = testscriptpath
         render('exabgp.conf', EXABGP_CONF, context)
         set_flag('bgp-advertiser.should-run')
         charms.coordinator.acquire('restart')
@@ -85,8 +97,13 @@ def restart():
 def stopped():
     log("Uninstalling")
     clear_flag('bgp-advertiser.should-run')
+    try:
+        os.rmdir(TESTSCRIPT_DIR)
+    except:
+        pass
 
 @hook('upgrade-charm')
 def upgrade_charm():
+    os.mkdir(TESTSCRIPT_DIR)
     write_config()
 

@@ -9,6 +9,11 @@ tags:
   - network
 subordinate: true
 series: [xenial, bionic]
+resources:
+  testscript:
+    type: file
+    filename: "healthcheck"
+    description: "Service test command. If provided all of 'healthcheck_cmd' is passed as arguments"
 requires:
   host-system:
     interface: "juju-info"
