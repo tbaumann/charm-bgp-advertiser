@@ -1,0 +1,4 @@
+#!/bin/sh
+# This is effectively an empty script
+# All arguments are passed into a shell
+exec /bin/sh -x -c " $*"
