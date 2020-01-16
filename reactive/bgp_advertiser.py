@@ -32,7 +32,17 @@ def update_status():
 @when_not('bgp-advertiser.ready')
 @when('apt.installed.exabgp')
 def install_bgp_advertiser():
-    os.mkdir(TESTSCRIPT_DIR)
+    log("Running install phase install_bgp_advertiser()")
+    if not exists(TESTSCRIPT_DIR):
+        os.mkdir(TESTSCRIPT_DIR)
+    if not exists("/var/run/exabgp.in"):
+        os.mkfifo("/var/run/exabgp.in", mode = 0o6660)
+        shutil.chown("/var/run/exabgp.in", group='exabgp')
+    if not exists("/var/run/exabgp.out"):
+        os.mkfifo("/var/run/exabgp.out", mode = 0o6660)
+        shutil.chown("/var/run/exabgp.out", group='exabgp')
+    shutil.copyfile('./templates/sudoers', '/etc/sudoers.d/10-exabgp')
+
     set_flag('bgp-advertiser.ready')
     write_config()
 
@@ -104,6 +114,6 @@ def stopped():
 
 @hook('upgrade-charm')
 def upgrade_charm():
-    os.mkdir(TESTSCRIPT_DIR)
+    clear_flag('bgp-advertiser.ready')
     write_config()
 
